@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDataState } from '../data-context'
 import { countBy, sortBy, minBy, maxBy } from 'lodash'
 import { ClassIcon } from './../components/ClassIcon'
@@ -7,6 +7,7 @@ import { findIndex } from 'lodash'
 import { ReactComponent as DoubleChevron } from './../icons/double-chevron-down.svg';
 
 import * as GLOBALS from './../GLOBALS'
+import { useEffect } from 'react/cjs/react.development';
 
 export const Classes = () => {
     const state = useDataState();
@@ -90,102 +91,186 @@ export const Classes = () => {
 
 const ClassBreakdown = () => {
     const state = useDataState();
-
-    let classStats = [
+    const [showWins, setShowWins] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [classStats, setClassStats] = useState([
         {
             theClass: 'DEATHKNIGHT',
+            color: '#C41E3A',
             ratingChange: 0,
-            color: '#C41E3A'
+            wins: 0,
+            losses: 0
         }, 
         {
             theClass: 'DEMONHUNTER',
-            ratingChange: 0,
             color: '#A330C9',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         {
             theClass: 'DRUID',
-            ratingChange: 0,
             color: '#FF7C0A',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         {
             theClass: 'HUNTER',
-            ratingChange: 0,
             color: '#AAD372',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         { 
             theClass: 'MAGE',
-            ratingChange: 0,
             color: '#3FC7EB',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         {
             theClass: 'MONK',
-            ratingChange: 0,
             color: '#00FF98',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         { 
             theClass: 'PALADIN',
-            ratingChange: 0,
             color: '#F48CBA',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         {
             theClass: 'PRIEST', 
-            ratingChange: 0,
             color: '#FFFFFF',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         { 
             theClass: 'ROGUE',
-            ratingChange: 0,
             color: '#FFF468',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         {
             theClass: 'SHAMAN',
-            ratingChange: 0,
             color: '#0070DD',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         { 
             theClass: 'WARLOCK',
-            ratingChange: 0,
             color: '#8788EE',
+            ratingChange: 0,
+            wins: 0,
+            losses: 0
         }, 
         { 
             theClass: 'WARRIOR',
+            color: '#C69B6D',
             ratingChange: 0,
-            color: '#C69B6D'
-        }];
+            wins: 0,
+            losses: 0
+        }
+    ]);
 
-    const specData = state.data.map((game, index) => {
-        let theClasses = game.EnemyComposition.split(',');
+    useEffect(() => {
+        let copyOfClasses = [...classStats];
 
-        theClasses.forEach(theClass => {
-            let [zClass, zSpec] = theClass.split('-');
+        state.data.map((game, index) => {
+            let theClasses = game.EnemyComposition.split(',');
 
-            let classIndex = findIndex(classStats, function(o) { return o.theClass === zClass; })
+            theClasses.forEach(theClass => {
+                let [zClass, zSpec] = theClass.split('-');
+                let classIndex = findIndex(copyOfClasses, function(o) { return o.theClass === zClass; })
+                let updatedRating = copyOfClasses[classIndex].ratingChange + parseInt(game.RatingChange);
+                let updatedWins = copyOfClasses[classIndex].wins;
+                let updatedLosses = copyOfClasses[classIndex].losses;
 
-            classStats[classIndex] = {
-                ...classStats[classIndex],
-                // record: classStats[classIndex].record + (game.Victory ? 1 : -1),
-                ratingChange: classStats[classIndex].ratingChange + Number(game.RatingChange),
-            };  
+                if(game.Victory === 'true'){
+                    updatedWins = updatedWins + 1;
+                } else {
+                    updatedLosses = updatedLosses - 1;
+                }
+
+                let copyOfClass = {...copyOfClasses[classIndex]};
+                copyOfClass.wins = updatedWins;
+                copyOfClass.losses = updatedLosses;
+                copyOfClass.ratingChange = updatedRating;
+
+                copyOfClasses[classIndex] = copyOfClass;
+            });
         });
-    });
 
-    console.log(classStats);
-    classStats = sortBy(classStats, 'ratingChange')
+        setClassStats(sortBy(copyOfClasses, 'ratingChange'));
+        setIsLoaded(true);
+    }, []);
+    
+    useEffect(() => {
+        if(isLoaded){
+            let copyOfClasses = [...classStats];
+
+            if(showWins){
+                copyOfClasses = sortBy(copyOfClasses, 'wins');
+            } else {
+                copyOfClasses = sortBy(copyOfClasses, 'ratingChange');
+            }
+
+            setClassStats(copyOfClasses);
+        }
+    }, [showWins, isLoaded])
 
     return (
         <>
+            <div>
+                <div class="hidden sm:block max-w-xs mx-auto">
+                    <nav class="relative z-0 rounded-lg shadow flex divide-x divide-gray-900" aria-label="Tabs">
+                        <button onClick={() => setShowWins(false)}class={`text-gray-100 hover:text-gray-200 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden ${showWins ? 'bg-gray-700' : 'bg-gray-600'}  py-4 px-4 text-sm font-medium text-center hover:bg-gray-600 focus:z-10`}>
+                            <span>Rating</span>
+                            {!showWins &&
+                                <span aria-hidden="true" class="bg-red-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+                            }
+                        </button>
+
+                        <button onClick={() => setShowWins(true)} class={`text-gray-100 hover:text-gray-200 group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-sm font-medium text-center ${showWins ? 'bg-gray-600' : 'bg-gray-700'} hover:bg-gray-600 rounded-r-lg focus:z-10`}>
+                            <span>Wins / Losses</span>
+                            {showWins &&
+                                <span aria-hidden="true" class="bg-red-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+                            }
+                        </button>
+                    </nav>
+                </div>
+            </div>
             <Bar 
                 {...GLOBALS.commonGraphSettings}
                 data={classStats}
-                keys={['ratingChange']}
+                keys={showWins ? ['wins', 'losses'] : ['ratingChange']}
                 layout="horizontal"
                 indexBy='theClass'
                 colorBy="index"
                 colors = {classStats.map(c => c.color)}
-                minValue={minBy(classStats, 'ratingChange')['ratingChange']}
-                maxValue={maxBy(classStats, 'ratingChange')['ratingChange']}
+                minValue={minBy(classStats, showWins ? 'losses' : 'ratingChange')[showWins ? 'losses' : 'ratingChange']}
+                maxValue={maxBy(classStats, showWins ? 'wins' : 'ratingChange')[showWins ? 'wins' : 'ratingChange']}
                 enableGridX={false}
                 enableGridY={true}
+                markers={[{
+                    axis: 'x',
+                    value: 0,
+                    lineStyle: { stroke: 'rgb(31, 41, 55)', strokeWidth: 5 },
+                }]}
+                axisBottom={{
+                    legend: showWins ? 'Wins / Losses' : 'Rating Change',
+                    legendPosition: 'middle',
+                    legendOffset: 50,
+                    tickSize: 0,
+                    tickPadding: 12,
+                }}
             />
         </>
     )

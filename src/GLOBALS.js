@@ -21,8 +21,8 @@ export const graphTheme = {
 
 export const commonGraphSettings = {
     theme: graphTheme,
-    width: 900,
-    height: 400,
-    margin: { top: 20, right: 20, bottom: 60, left: 80 },
+    width: 960,
+    height: 440,
+    margin: { top: 20, right: 20, bottom: 60, left: 120 },
     animate: true,
 }
