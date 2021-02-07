@@ -1,9 +1,12 @@
 import React from 'react';
 import { useDataState } from '../data-context'
-import { countBy } from 'lodash'
+import { countBy, sortBy, minBy, maxBy } from 'lodash'
 import { ClassIcon } from './../components/ClassIcon'
-
+import { Bar } from '@nivo/bar'
+import { findIndex } from 'lodash'
 import { ReactComponent as DoubleChevron } from './../icons/double-chevron-down.svg';
+
+import * as GLOBALS from './../GLOBALS'
 
 export const Classes = () => {
     const state = useDataState();
@@ -38,6 +41,7 @@ export const Classes = () => {
             />
         )
     });
+
 
     return (
         <div className="pt-12 sm:pt-16">
@@ -78,6 +82,111 @@ export const Classes = () => {
                     </div>
                 </div>
             </div>
+            <ClassBreakdown />
         </div>
     );
+}
+
+
+const ClassBreakdown = () => {
+    const state = useDataState();
+
+    let classStats = [
+        {
+            theClass: 'DEATHKNIGHT',
+            ratingChange: 0,
+            color: '#C41E3A'
+        }, 
+        {
+            theClass: 'DEMONHUNTER',
+            ratingChange: 0,
+            color: '#A330C9',
+        }, 
+        {
+            theClass: 'DRUID',
+            ratingChange: 0,
+            color: '#FF7C0A',
+        }, 
+        {
+            theClass: 'HUNTER',
+            ratingChange: 0,
+            color: '#AAD372',
+        }, 
+        { 
+            theClass: 'MAGE',
+            ratingChange: 0,
+            color: '#3FC7EB',
+        }, 
+        {
+            theClass: 'MONK',
+            ratingChange: 0,
+            color: '#00FF98',
+        }, 
+        { 
+            theClass: 'PALADIN',
+            ratingChange: 0,
+            color: '#F48CBA',
+        }, 
+        {
+            theClass: 'PRIEST', 
+            ratingChange: 0,
+            color: '#FFFFFF',
+        }, 
+        { 
+            theClass: 'ROGUE',
+            ratingChange: 0,
+            color: '#FFF468',
+        }, 
+        {
+            theClass: 'SHAMAN',
+            ratingChange: 0,
+            color: '#0070DD',
+        }, 
+        { 
+            theClass: 'WARLOCK',
+            ratingChange: 0,
+            color: '#8788EE',
+        }, 
+        { 
+            theClass: 'WARRIOR',
+            ratingChange: 0,
+            color: '#C69B6D'
+        }];
+
+    const specData = state.data.map((game, index) => {
+        let theClasses = game.EnemyComposition.split(',');
+
+        theClasses.forEach(theClass => {
+            let [zClass, zSpec] = theClass.split('-');
+
+            let classIndex = findIndex(classStats, function(o) { return o.theClass === zClass; })
+
+            classStats[classIndex] = {
+                ...classStats[classIndex],
+                // record: classStats[classIndex].record + (game.Victory ? 1 : -1),
+                ratingChange: classStats[classIndex].ratingChange + Number(game.RatingChange),
+            };  
+        });
+    });
+
+    console.log(classStats);
+    classStats = sortBy(classStats, 'ratingChange')
+
+    return (
+        <>
+            <Bar 
+                {...GLOBALS.commonGraphSettings}
+                data={classStats}
+                keys={['ratingChange']}
+                layout="horizontal"
+                indexBy='theClass'
+                colorBy="index"
+                colors = {classStats.map(c => c.color)}
+                minValue={minBy(classStats, 'ratingChange')['ratingChange']}
+                maxValue={maxBy(classStats, 'ratingChange')['ratingChange']}
+                enableGridX={false}
+                enableGridY={true}
+            />
+        </>
+    )
 }
