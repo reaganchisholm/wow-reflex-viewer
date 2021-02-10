@@ -229,19 +229,19 @@ const ClassBreakdown = () => {
     return (
         <>
             <div>
-                <div class="hidden sm:block max-w-xs mx-auto">
-                    <nav class="relative z-0 rounded-lg shadow flex divide-x divide-gray-900" aria-label="Tabs">
-                        <button onClick={() => setShowWins(false)}class={`text-gray-100 hover:text-gray-200 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden ${showWins ? 'bg-gray-700' : 'bg-gray-600'}  py-4 px-4 text-sm font-medium text-center hover:bg-gray-600 focus:z-10`}>
+                <div className="hidden sm:block max-w-xs mx-auto">
+                    <nav className="relative z-0 rounded-lg shadow flex divide-x divide-gray-900" aria-label="Tabs">
+                        <button onClick={() => setShowWins(false)}className={`text-gray-100 hover:text-gray-200 rounded-l-lg group relative min-w-0 flex-1 overflow-hidden ${showWins ? 'bg-gray-700' : 'bg-gray-600'}  py-4 px-4 text-sm font-medium text-center hover:bg-gray-600 focus:z-10`}>
                             <span>Rating</span>
                             {!showWins &&
-                                <span aria-hidden="true" class="bg-red-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+                                <span aria-hidden="true" className="bg-red-500 absolute inset-x-0 bottom-0 h-0.5"></span>
                             }
                         </button>
 
-                        <button onClick={() => setShowWins(true)} class={`text-gray-100 hover:text-gray-200 group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-sm font-medium text-center ${showWins ? 'bg-gray-600' : 'bg-gray-700'} hover:bg-gray-600 rounded-r-lg focus:z-10`}>
+                        <button onClick={() => setShowWins(true)} className={`text-gray-100 hover:text-gray-200 group relative min-w-0 flex-1 overflow-hidden py-4 px-4 text-sm font-medium text-center ${showWins ? 'bg-gray-600' : 'bg-gray-700'} hover:bg-gray-600 rounded-r-lg focus:z-10`}>
                             <span>Wins / Losses</span>
                             {showWins &&
-                                <span aria-hidden="true" class="bg-red-500 absolute inset-x-0 bottom-0 h-0.5"></span>
+                                <span aria-hidden="true" className="bg-red-500 absolute inset-x-0 bottom-0 h-0.5"></span>
                             }
                         </button>
                     </nav>
