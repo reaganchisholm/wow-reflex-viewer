@@ -4,6 +4,7 @@ import { Layout } from './components/Layout';
 import { IntroSummary } from './sections/IntroSummary';
 import { Classes } from './sections/Classes';
 import { Maps } from './sections/Maps'
+import { GameLength } from './sections/GameLength'
 import { DemoData } from './components/DemoData'
 
 import { DataProvider } from './data-context';
@@ -24,6 +25,8 @@ function App() {
               <Classes />
               <div className="my-32"></div>
               <Maps />
+              <div className="my-32"></div>
+              <GameLength />
             </>
           }
         </Layout>
