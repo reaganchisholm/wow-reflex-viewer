@@ -16,9 +16,9 @@ export const SectionText = ({ children }) => {
                 <h2 className="text-3xl font-extrabold text-gray-100 sm:text-4xl leading-none">
                     { heading }
                 </h2>
-                <p className="mt-3 text-xl text-gray-400 sm:mt-4 max-w-prose mx-auto">
+                {/* <p className="mt-3 text-xl text-gray-400 sm:mt-4 max-w-prose mx-auto">
                     { body }
-                </p>
+                </p> */}
             </div>
         </div>
     );

@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDataState } from '../data-context'
-import { countBy, sortBy, minBy, maxBy } from 'lodash'
-import { ClassIcon } from './../components/ClassIcon'
+import { countBy, sortBy, minBy, maxBy, findIndex } from 'lodash'
 import { Bar } from '@nivo/bar'
-import { findIndex } from 'lodash'
+
+// Components
+import { ClassIcon } from './../components/ClassIcon'
+import { SectionText } from './../components/SectionText'
+
+// Icons
 import { ReactComponent as DoubleChevron } from './../icons/double-chevron-down.svg';
 
 import * as GLOBALS from './../GLOBALS'
-import { useEffect } from 'react/cjs/react.development';
 
 export const Classes = () => {
     const state = useDataState();
@@ -45,18 +48,18 @@ export const Classes = () => {
 
 
     return (
-        <div className="pt-12 sm:pt-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center">
-                    <span className="block mx-auto w-16 transform translate-y-3 text-gray-500 border border-gray-700 rounded-full p-4 mb-6">
-                        <DoubleChevron />
-                    </span> 
-                    <h2 className="text-3xl font-extrabold text-gray-100 sm:text-4xl leading-none">
-                        Class Breakdown
-                    </h2>
-                    <p className="mt-3 text-xl text-gray-400 sm:mt-4 max-w-prose mx-auto">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div>
+        <div id="class-breakdown" className="pt-12 sm:pt-16">
+            <SectionText>
+                <SectionText.Icon>
+                    <DoubleChevron />
+                </SectionText.Icon>
+                <SectionText.Heading>
+                    Class Breakdown
+                </SectionText.Heading>
+                <SectionText.Body>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </SectionText.Body>
+            </SectionText>
             <div className="mt-10 pb-12 sm:pb-16">
                 <div className="relative">
                     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

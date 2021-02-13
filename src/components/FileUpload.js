@@ -19,7 +19,7 @@ export function FileUpload() {
                             <span>Upload a CSV file</span>
                             <input id="file-upload" name="file-upload" type="file" className="sr-only" />
                             </label>
-                            <p className="pl-1">or drag and drop</p>
+                            {/* <p className="pl-1">or drag and drop</p> */}
                         </div>
                     </div>
                 </div>

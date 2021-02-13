@@ -1,9 +1,14 @@
 import React from 'react'
 import { sumBy, countBy, minBy, maxBy } from 'lodash'
 import { useDataState } from '../data-context'
-import CountUp from 'react-countup'
 import { linearGradientDef } from '@nivo/core'
 import { Line } from '@nivo/line'
+import CountUp from 'react-countup'
+
+// Components
+import { SectionText } from './../components/SectionText';
+
+// Icons
 import { ReactComponent as ChartIcon } from './../icons/chart-square-bar.svg';
 
 import * as GLOBALS from './../GLOBALS'
@@ -14,23 +19,23 @@ export const IntroSummary = () => {
     const gameOutcomes = countBy(state.data, item => item.Victory)
 
     return (
-        <div className="pt-12 sm:pt-16">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="max-w-4xl mx-auto text-center">
-                    <span className="block mx-auto w-16 transform translate-y-3 text-gray-500 border border-gray-700 rounded-full p-4 mb-6">
-                        <ChartIcon />
-                    </span> 
-                    <h2 className="text-3xl font-extrabold text-gray-100 sm:text-4xl leading-none">
-                        Games Overview
-                    </h2>
-                    <p className="mt-3 text-xl text-gray-400 sm:mt-4 max-w-prose mx-auto">
-                        {ratingChange > 0 
-                        ? "Not too shabby. I mean my record is better of course... what's that? You want me to prove it? Sorry, I can't, I'm busy hanging out with my banging hot GF."
-                        : '"It ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward. How much you can take and keep moving forward. That’s how winning is done!" –Rocky Balboa'
-                        }
-                    </p>
-                </div>
-            </div>
+        <div id="games-overview" className="pt-12 sm:pt-16">
+            <SectionText>
+                <SectionText.Icon>
+                    <ChartIcon />
+                </SectionText.Icon>
+                <SectionText.Heading>
+                    Games Overview
+                </SectionText.Heading>
+                <SectionText.Body>
+                    {ratingChange > 0 
+                    ? 
+                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    : 
+                        '"It ain’t about how hard you hit. It’s about how hard you can get hit and keep moving forward. How much you can take and keep moving forward. That’s how winning is done!" –Rocky Balboa'
+                    }
+                </SectionText.Body>
+            </SectionText>
             <div className="mt-10 pb-12 sm:pb-16">
                 <div className="relative">
                     <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

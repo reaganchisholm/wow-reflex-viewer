@@ -192,7 +192,7 @@ export const Maps = () => {
     });
 
     return (
-        <div className="pt-12 sm:pt-16">
+        <div id="maps" className="pt-12 sm:pt-16">
             <SectionText>
                 <SectionText.Icon>
                     <MapPin />
@@ -205,7 +205,7 @@ export const Maps = () => {
                 </SectionText.Body>
             </SectionText>
 
-            <div class="grid gap-8 grid-cols-4 mt-12">
+            <div className="grid gap-8 grid-cols-4 mt-12">
                 {mapItems}
             </div>
         </div>

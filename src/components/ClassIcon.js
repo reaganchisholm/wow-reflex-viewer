@@ -273,7 +273,7 @@ export const ClassIcon = ({ theClass, theSpec, size = '20', className }) => {
                 <img className="absolute top-0 left-0 w-full h-full object-center object-cover" src={classIcon} alt={theClass} />
             </div>
             <div className="absolute -bottom-1 -right-1">
-                <div className={`relative rounded-full overflow-hidden w-${size / 2} h-${size / 2} border-2 border-gray-600`}>
+                <div className={`relative rounded-full overflow-hidden w-${size / 2} h-${size / 2} border-4 border-gray-600`}>
                     <img className="absolute top-0 left-0 w-full h-full transform scale-110 object-center object-cover" src={specIcon} alt={theSpec} />
                 </div>
             </div>

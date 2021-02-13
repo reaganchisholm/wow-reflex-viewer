@@ -7,10 +7,19 @@ const DataDispatchContext = React.createContext()
 function dataReducer(state, action) {
   switch (action.type) {
     case 'init': {
-        return { data: action.payload }
+        return { 
+          loaded: true,
+          data: action.payload 
+        }
     }
     case 'rating': {
         return { ratingChange: action.payload }
+    }
+    case 'destroy': {
+        return { 
+          loaded: false,
+          data: null
+        }
     }
     default: {
       throw new Error(`Unhandled action type: ${action.type}`)
