@@ -8,13 +8,12 @@ import { ClassIcon } from './../components/ClassIcon'
 import { SectionText } from './../components/SectionText'
 
 // Icons
-import { ReactComponent as DoubleChevron } from './../icons/double-chevron-down.svg';
+import { ReactComponent as PieChart } from './../icons/pie-chart.svg';
 
 import * as GLOBALS from './../GLOBALS'
 
 export const Classes = () => {
     const state = useDataState();
-    console.log(state.data);
 
     const friendlyCompCount = countBy(state.data,'TeamComposition')
     const mostCommonFriendlyComp = Object.keys(friendlyCompCount).reduce((a, b) => friendlyCompCount[a] > friendlyCompCount[b] ? a : b).split(',');
@@ -51,7 +50,7 @@ export const Classes = () => {
         <div id="class-breakdown" className="pt-12 sm:pt-16">
             <SectionText>
                 <SectionText.Icon>
-                    <DoubleChevron />
+                    <PieChart />
                 </SectionText.Icon>
                 <SectionText.Heading>
                     Class Breakdown

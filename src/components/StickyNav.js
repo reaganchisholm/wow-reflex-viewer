@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ReactComponent as ChartIcon } from './../icons/chart-square-bar.svg';
-import { ReactComponent as DoubleChevron } from './../icons/double-chevron-down.svg';
-import { ReactComponent as MapPin } from './../icons/map-pin.svg';
+import { ReactComponent as PieChart } from './../icons/pie-chart.svg';
+import { ReactComponent as Map } from './../icons/map.svg';
 import { ReactComponent as Clock } from './../icons/clock.svg';
 import { ReactComponent as ArrowLeft } from './../icons/arrow-left.svg';
 import { useDataDispatch, useDataState } from '../data-context';
@@ -16,7 +16,7 @@ export const StickyNav = () => {
             {state.loaded &&
                 <>
                     <button 
-                        className="text-gray-400 mb-4" 
+                        className="text-gray-400 mb-4 hover:text-gray-200 transition-colors" 
                         onClick={() => {
                             dispatch({type: 'destroy'});
                         }}
@@ -32,13 +32,13 @@ export const StickyNav = () => {
                         </AnchorLink>
                         <AnchorLink
                             id="class-breakdown" 
-                            icon={<DoubleChevron />}
+                            icon={<PieChart />}
                         >
                             Class Breakdown
                         </AnchorLink>
                         <AnchorLink
                             id="maps" 
-                            icon={<MapPin />}
+                            icon={<Map />}
                         >
                             Maps
                         </AnchorLink>

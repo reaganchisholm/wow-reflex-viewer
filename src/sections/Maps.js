@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDataState } from '../data-context';
 import { findIndex, mean } from 'lodash';
 
-import { ReactComponent as MapPin } from './../icons/map-pin.svg';
+import { ReactComponent as Map } from './../icons/map.svg';
 import { ReactComponent as Clock } from './../icons/clock.svg';
 
 import { SectionText } from './../components/SectionText';
@@ -195,7 +195,7 @@ export const Maps = () => {
         <div id="maps" className="pt-12 sm:pt-16">
             <SectionText>
                 <SectionText.Icon>
-                    <MapPin />
+                    <Map />
                 </SectionText.Icon>
                 <SectionText.Heading>
                     Maps
