@@ -16,7 +16,7 @@ export function Home({ setIsLoaded }) {
               <div>
                 <div className="flex items-center">
                   <span className="sr-only">Workflow</span>
-                  <img className="h-8 w-auto sm:h-10 inline-block" src={logo} />
+                  <img className="h-8 w-auto sm:h-10 inline-block" src={logo} alt="Reflex Stat Viewer" />
                   <h1 className="ml-4 inline-block font-bold text-white text-3xl">REFlex Stat Viewer</h1>
                 </div>
                 <h2 className="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:leading-none lg:mt-6 lg:text-5xl xl:text-6xl">

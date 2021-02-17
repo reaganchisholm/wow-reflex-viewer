@@ -3,7 +3,7 @@ import React from 'react';
 export const SectionText = ({ children }) => {
     const icon = React.Children.map(children, child => child.type.displayName === 'Icon' ? child : null);
     const heading = React.Children.map(children, child => child.type.displayName === 'Heading' ? child : null);
-    const body = React.Children.map(children, child => child.type.displayName === 'Body' ? child : null);
+    // const body = React.Children.map(children, child => child.type.displayName === 'Body' ? child : null);
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

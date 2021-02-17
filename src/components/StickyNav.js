@@ -3,7 +3,7 @@ import React from 'react';
 import { ReactComponent as ChartIcon } from './../icons/chart-square-bar.svg';
 import { ReactComponent as PieChart } from './../icons/pie-chart.svg';
 import { ReactComponent as Map } from './../icons/map.svg';
-import { ReactComponent as Clock } from './../icons/clock.svg';
+// import { ReactComponent as Clock } from './../icons/clock.svg';
 import { ReactComponent as ArrowLeft } from './../icons/arrow-left.svg';
 import { useDataDispatch, useDataState } from '../data-context';
 

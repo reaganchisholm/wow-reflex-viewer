@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Layout } from './components/Layout';
 import { Home } from './pages/Home';
 import { DataProvider } from './data-context';
 import { StickyNav } from './components/StickyNav';
 import { Stats } from './pages/Stats';
-
-// import { DemoData } from './components/DemoData'
 
 function App() {
   return (

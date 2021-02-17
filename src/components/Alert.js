@@ -18,7 +18,7 @@ export const Alert = () => {
                     <div className="mt-2 text-sm max-w-sm text-gray-400">
                         <p>
                             REFlex is a World of Warcraft Addon that keeps track of your arena games and provides CSV dumps of the data.
-                            <a className="block mt-4 text-gray-500 hover:text-gray-400" href="https://www.curseforge.com/wow/addons/reflex-battleground-historian" target="_blank" rel="noopener">
+                            <a className="block mt-4 text-gray-500 hover:text-gray-400" href="https://www.curseforge.com/wow/addons/reflex-battleground-historian" target="_blank" rel="noreferrer">
                                 View the addon page 
                                 <span className="inline-block w-4 relative top-0.5 ml-1"><ArrowRight /></span>
                             </a>

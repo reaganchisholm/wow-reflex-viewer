@@ -189,7 +189,7 @@ const ClassBreakdown = () => {
             let theClasses = game.EnemyComposition.split(',');
 
             theClasses.forEach(theClass => {
-                let [zClass, zSpec] = theClass.split('-');
+                let [zClass,] = theClass.split('-');
                 let classIndex = findIndex(copyOfClasses, function(o) { return o.theClass === zClass; })
                 let updatedRating = copyOfClasses[classIndex].ratingChange + parseInt(game.RatingChange);
                 let updatedWins = copyOfClasses[classIndex].wins;
@@ -208,6 +208,8 @@ const ClassBreakdown = () => {
 
                 copyOfClasses[classIndex] = copyOfClass;
             });
+
+            return true;
         });
 
         setClassStats(sortBy(copyOfClasses, 'ratingChange'));

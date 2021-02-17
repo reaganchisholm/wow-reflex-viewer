@@ -156,6 +156,8 @@ export const Maps = () => {
             } else {
                 console.error(`Arena Map ID: ${game.Map} not found`);
             }
+
+            return true;
         });
 
         setMapData(copyOfMapData);
@@ -180,7 +182,7 @@ export const Maps = () => {
         return (
             <div key={index} className="text-gray-200 leading-6">
                 <div className="relative aspect-w-16 aspect-h-9 rounded-lg overflow-hidden mb-2">
-                    <img className="absolute top-0 left-0 w-100 h-100 z-10 object-cover" src={map.mapSrc} />
+                    <img className="absolute top-0 left-0 w-100 h-100 z-10 object-cover" src={map.mapSrc} alt={map.name} />
                     <div className="bg-gray-600"></div>
                 </div>
                 <h3 className="text-lg mb-2">{map.name}</h3>
