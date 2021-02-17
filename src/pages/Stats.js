@@ -4,12 +4,10 @@ import { useDataState } from '../data-context';
 import { IntroSummary } from './../sections/IntroSummary';
 import { Classes } from './../sections/Classes';
 import { Maps } from './../sections/Maps'
-import { GameLength } from './../sections/GameLength'
+// import { GameLength } from './../sections/GameLength'
 
 export const Stats = () => {
     const state = useDataState();
-
-    console.log(state.loaded);
 
     return (
         <>
@@ -21,7 +19,7 @@ export const Stats = () => {
               <div className="my-32"></div>
               <Maps />
               <div className="my-32"></div>
-              <GameLength />
+              {/* <GameLength /> */}
             </div>
           }
         </>

@@ -125,7 +125,6 @@ const RatingChangeGraph = () => {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    
                     legend: 'Games Played',
                     legendOffset: 50,
                     legendPosition: 'middle'
@@ -144,7 +143,7 @@ const RatingChangeGraph = () => {
                     legendPosition: 'middle'
                 }}
             />
-            <span className="block text-center text-xs text-gray-600 pl-12">*MMR in graph above may not exactly reflect your rating change</span>
+            <span className="block text-center text-xs text-gray-600 pl-24">*MMR in graph above may not exactly reflect your rating change</span>
         </>
     )
 }

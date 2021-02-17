@@ -42,12 +42,6 @@ export const StickyNav = () => {
                         >
                             Maps
                         </AnchorLink>
-                        <AnchorLink
-                            id="game-length" 
-                            icon={<Clock />}
-                        >
-                            Game Length
-                        </AnchorLink>
                     </nav>
                 </>
             }

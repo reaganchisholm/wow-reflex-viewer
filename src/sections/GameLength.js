@@ -103,10 +103,6 @@ export const GameLength = () => {
         setGameLengths(copyOfGameLengths);
     }, []);
 
-    // https://nivo.rocks/funnel/
-
-    console.log(data);
-
     return (
         <div id="game-length" className="pt-12 sm:pt-16">
             <SectionText>
@@ -123,14 +119,20 @@ export const GameLength = () => {
             {data.length > 0 && 
                 <Funnel
                     {...commonGraphSettings}
+                    margin={{ 
+                        top: 20, 
+                        right: 20, 
+                        left: 20,
+                        bottom: 20
+                    }}
                     data={data}
                     colors={{ scheme: 'spectral' }}
                     direction="horizontal"
                     borderWidth={20}
                     labelColor={{ from: 'color', modifiers: [ [ 'darker', 3 ] ] }}
-                    beforeSeparatorLength={100}
+                    beforeSeparatorLength={50}
                     beforeSeparatorOffset={20}
-                    afterSeparatorLength={100}
+                    afterSeparatorLength={50}
                     afterSeparatorOffset={20}
                     currentPartSizeExtension={10}
                     currentBorderWidth={40}

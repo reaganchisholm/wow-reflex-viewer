@@ -1,8 +1,35 @@
 import React from 'react'
+import { useDataDispatch } from '../data-context'
+import Papa from 'papaparse'
+import { orderBy } from 'lodash'
 
 import {ReactComponent as DocumentReportIcon} from './../icons/document-report.svg';
 
 export function FileUpload() {
+    const dispatch = useDataDispatch();
+
+    function onFileUpload(event){
+      event.preventDefault();
+
+      const file = event.target.files[0];
+      const reader = new FileReader();
+
+      reader.readAsText(file);
+
+      reader.onload = function() {
+        var csv = reader.result;
+        var parsed = Papa.parse(csv, { header: true });
+        var orderedData = orderBy(parsed.data, 'Timestamp')
+
+        dispatch({type: 'init', payload: orderedData})
+      };
+    
+      reader.onerror = function() {
+        console.log(reader.error);
+      };
+
+    }
+
     return (
         <div>
             <label htmlFor="cover_photo" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 mb-2">
@@ -17,7 +44,7 @@ export function FileUpload() {
                         <div className="flex text-sm text-gray-600">
                             <label htmlFor="file-upload" className="relative cursor-pointer bg-white rounded-md font-medium text-red-600 hover:text-red-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-red-500">
                             <span>Upload a CSV file</span>
-                            <input id="file-upload" name="file-upload" type="file" className="sr-only" />
+                            <input id="file-upload" name="file-upload" type="file" className="sr-only" onChange={onFileUpload}/>
                             </label>
                             {/* <p className="pl-1">or drag and drop</p> */}
                         </div>
