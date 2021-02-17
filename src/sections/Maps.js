@@ -161,6 +161,7 @@ export const Maps = () => {
         });
 
         setMapData(copyOfMapData);
+        //eslint-disable-next-line
     }, []);
 
     let mapItems = mapData.map((map, index) => {

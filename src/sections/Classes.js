@@ -214,6 +214,7 @@ const ClassBreakdown = () => {
 
         setClassStats(sortBy(copyOfClasses, 'ratingChange'));
         setIsLoaded(true);
+    //eslint-disable-next-line
     }, []);
     
     useEffect(() => {
@@ -228,6 +229,7 @@ const ClassBreakdown = () => {
 
             setClassStats(copyOfClasses);
         }
+    //eslint-disable-next-line
     }, [showWins, isLoaded])
 
     return (
