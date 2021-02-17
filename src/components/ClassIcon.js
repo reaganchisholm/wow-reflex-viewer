@@ -53,7 +53,7 @@ import WARRIOR_SPEC_ICON_ARMS from './../icons/spec-icons/warrior-arms.png';
 import WARRIOR_SPEC_ICON_DEFENSE from './../icons/spec-icons/warrior-defense.png';
 import WARRIOR_SPEC_ICON_FURY from './../icons/spec-icons/warrior-fury.png';
 
-export const ClassIcon = ({ theClass, theSpec, size = '20', className }) => {
+export const ClassIcon = ({ theClass, theSpec, className }) => {
     let classIcon = '';
     let specIcon = '';
     
@@ -269,11 +269,11 @@ export const ClassIcon = ({ theClass, theSpec, size = '20', className }) => {
     
     return (
         <div className={`relative inline-block ${className}`} title={`${capitalize(theSpec)} ${capitalize(theClass)}`}>
-            <div className={`relative rounded-full overflow-hidden w-${size} h-${size} border-4 border-gray-600`}>
+            <div className={`relative rounded-full overflow-hidden w-20 h-20 border-4 border-gray-600`}>
                 <img className="absolute top-0 left-0 w-full h-full object-center object-cover" src={classIcon} alt={theClass} />
             </div>
             <div className="absolute -bottom-1 -right-1">
-                <div className={`relative rounded-full overflow-hidden w-${size / 2} h-${size / 2} border-4 border-gray-600`}>
+                <div className={`relative block rounded-full overflow-hidden w-10 h-10 border-4 border-gray-600`}>
                     <img className="absolute top-0 left-0 w-full h-full transform scale-110 object-center object-cover" src={specIcon} alt={theSpec} />
                 </div>
             </div>
